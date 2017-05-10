@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<!--
+    Copyright (c) 2012-2016 Adobe Systems Incorporated. All rights reserved.
+
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+    <!-- This is a wide open CSP declaration. To lock this down for production, see below. -->
+    <!--<meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *" />-->
+    <!-- Good default declaration:
+    * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
+    * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+    * Disables use of eval() and inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+        * Enable inline JS: add 'unsafe-inline' to default-src
+        * Enable eval(): add 'unsafe-eval' to default-src
+    * Create your own at http://cspisawesome.com
+    -->
+    <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: 'unsafe-inline' https://ssl.gstatic.com; style-src 'self' 'unsafe-inline'; media-src *" /> -->
+    <link rel="stylesheet" href="http://ququplay.github.io/jquery-mobile-flat-ui-theme/css/jquery.mobile.flatui.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
+    <title>Hello World</title>
+</head>
+
+<body>
+    <div data-role="page" id="homepage">
+        
+        <!--Header-->
+        <div data-role="header" data-position="fixed">
+          <h1>Foodi</h1>
+        </div>
+
+        <div role="main" class="ui-content">
+            <!--Search-->
+            <div class="form-group">
+                <div class="input-group">
+                    <input class="form-control" id="search-key" type="search" placeholder="Search">
+                </div>
+            </div>
+
+            <!--More options-->
+            <div class="ui-body">
+                <div data-role="collapsible" data-collapsed="true" data-theme="a">
+                  <h3>More options:</h3>
+                  <div>
+                    <div data-role="fieldcontain">
+                        <fieldset data-role="controlgroup">
+                          <legend>Diet:</legend>
+                          <input type="checkbox" name="checkbox-1a" id="balanced" class="custom" />
+                          <label for="balanced" >Balanced</label>
+
+                          <input type="checkbox" name="checkbox-2a" id="high-protein" class="custom" />
+                          <label for="high-protein">High Protein</label>
+
+                          <input type="checkbox" name="checkbox-3a" id="low-fat" class="custom" />
+                          <label for="low-fat">Low Fat</label>
+
+                          <input type="checkbox" name="checkbox-4a" id="low-carb" class="custom" />
+                          <label for="low-carb" >Low Carb</label>
+                        </fieldset>
+                      </div>
+                  </div>
+                  <div>
+                    <div data-role="fieldcontain">
+                        <fieldset data-role="controlgroup">
+                          <legend>Health:</legend>
+                          <input type="checkbox" name="checkbox-1a" id="alcohol-free" class="custom" />
+                          <label for="alcohol-free" >Alcohol Free</label>
+
+                          <input type="checkbox" name="checkbox-2a" id="peanut-free" class="custom" />
+                          <label for="peanut-free" >Peanut Free</label>
+
+                          <input type="checkbox" name="checkbox-3a" id="tree-nut-free" class="custom" />
+                          <label for="tree-nut-free" >Tree Nut Free</label>
+                        </fieldset>
+                      </div>
+                  </div>
+                </div>
+            </div>
+
+            <!--Search-->
+            <button data-role="button" id="search_button">Search</button>
+
+            <!--Result-->
+            <div class="noti"></div>
+            <div class="list result-list">
+                <!--Add result here-->       
+            </div>
+        </div>
+
+        <!--footer-->
+        <div data-role="footer" data-position="fixed">
+            <div data-role="navbar">
+                <ul >
+                  <li ><a href="#homepage" data-icon="home" class="btm-button btn-active"></a>
+                  </li>
+                  <li><a href="#favorites"  id="favorites-link" data-icon="star" class="btm-button"></a>
+                  </li>
+                  <li><a href="#setting-page" data-icon="gear" class="btm-button"></a>
+                  </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!--Food Page-->
+    <div data-role="page" id="foodpage">
+        <!--Header-->
+        <div data-role="header" data-position="fixed">
+          <a href="#homepage" data-role="button">Back</a>
+          <h1>Foodi</h1>
+        </div>
+
+        <!--Main-->
+        
+            <div class="container">
+                <div class="main-img"><img src="https://www.edamam.com/web-img/798/79872b022c279ee76b9bee7421481e5f.jpg"></div>
+                <div class="star"><i class="fa fa-star" aria-hidden="true"></i></div>
+                <div class="name"><h4 id="food-label">Homemade fish finger</h4></div>
+
+                <div class="full-ingredients">
+                    <hr>
+                    <h3><span class="num-ingredients">5</span> ingredients</h3>
+                    <div class="ingredients-content"></div>
+                </div>
+
+                <div class="nutrition">
+                    <hr>
+                    <h3>Nutrition</h3>
+                    <div class="nutrition-content">
+                        <div class="cell serv"><div id="cal_serv">1,188</div>CAL / SERV</div>
+                        <div class="cell dailyval"><div id="daily_val">60%</div>DAILY VALUE</div>
+                        <div class="cell servings">
+                            <div data-role="fieldcontain" id="servings-box">
+                                <input type="number" name="serving" id="servings-input" value="4" />
+                                <label for="name-c" id="serving-label">Serving</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+      
+
+        <!--footer-->
+        <div data-role="footer" data-position="fixed">
+            <div data-role="navbar">
+                <ul>
+                  <li><a href="#homepage" data-icon="home" class="btm-button btn-active"></a>
+                  </li>
+                  <li><a href="#favorites" id="favorites-link" data-icon="star" class="btm-button"></a>
+                  </li>
+                  <li><a href="#setting-page" data-icon="gear" class="btm-button"></a>
+                  </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+    <!--Favorites-->
+    <div data-role="page" id="favorites">
+        <!--Header-->
+        <div data-role="header" data-position="fixed">
+          <h1>Foodi Favorites</h1>
+        </div>
+
+        <!--Main-->
+        
+        <div class="list favorites-list">
+                
+        </div>
+      
+
+        <!--footer-->
+        <div data-role="footer" data-position="fixed">
+            <div data-role="navbar">
+                <ul>
+                  <li><a href="#homepage" data-icon="home" class="btm-button"></a>
+                  </li>
+                  <li><a href="#favorites" id="favorites-link" data-icon="star" class="btm-button  btn-active"></a>
+                  </li>
+                  <li><a href="#setting-page" data-icon="gear" class="btm-button"></a>
+                  </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+    <!--Settings-->
+    <div data-role="page" id="setting-page">
+        <!--Header-->
+        <div data-role="header" data-position="fixed">
+          <h1>Foodi Settings</h1>
+        </div>
+
+        <!--Main-->
+        
+        <div class="settings">
+                <div id="deviceProperties"></div>
+                <button data-role="button" id="clear">Clear Data</button>
+        </div>
+      
+
+        <!--footer-->
+        <div data-role="footer" data-position="fixed">
+            <div data-role="navbar">
+                <ul>
+                  <li><a href="#homepage" data-icon="home" class="btm-button"></a>
+                  </li>
+                  <li><a href="#favorites" id="favorites-link" data-icon="star" class="btm-button "></a>
+                  </li>
+                  <li><a href="#setting-page" data-icon="gear" class="btm-button  btn-active"></a>
+                  </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!--Scripts-->
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <script src="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.js"></script>
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript">
+        app.initialize();
+    </script>
+</body>
+
+</html>

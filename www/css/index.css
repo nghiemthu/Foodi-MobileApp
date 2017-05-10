@@ -1,0 +1,105 @@
+
+h3{
+    margin: 0;
+}
+
+.list{
+    min-width: 260px;
+    width: 90%;
+    margin: 0 auto;
+    text-align: center;
+    background: red;
+}
+
+.box{
+    margin: 0 auto;
+}
+
+.inner-box{
+    width: 120px;
+    min-height: 200px;
+    float: left;
+    text-align: center;
+    margin: 5px 5px;
+    box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.75);
+}
+
+.ui-mobile a img {
+    width: 120px;
+    height: 120px;
+}
+
+.container {
+    text-align: center;
+    padding: 0;
+    position: relative;
+}
+
+.main-img{
+    margin: auto;
+}
+
+.main-img img{
+    width: 100%;
+    max-height: 250px;
+}
+
+.star{
+    position: absolute;
+    top: 5px;
+    right: 5%;
+    color: white;
+    cursor: pointer;
+}
+
+.star-active{
+    color: #e67e22;
+}
+
+#servings-box{
+    width: 60px;
+    margin: auto;
+}
+
+.serv, .dailyval{
+    margin-top: 24px;
+}
+
+#cal_serv, #daily_val{
+    margin-bottom: 10px;
+}
+
+.cell{
+    float: left;
+    width: 33%;
+    text-align: center;
+}
+
+#serving-label{
+    margin-left: -14px;
+    text-transform: uppercase;
+}
+
+.btm-button {
+    padding-top: 5px;
+}
+
+.btn-active{
+    background-color: #293a4a !important;
+}
+
+#food-label{
+    text-transform: uppercase;
+}
+
+.ingredients-content{
+    margin-top: 15px;
+}
+
+a:link, a:visited {
+    text-decoration: none;
+}
+
+a:hover, a:active {
+    
+}
